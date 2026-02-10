@@ -3,48 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DreamySurvival | Official Server Website</title>
+    <title>DreamySurvival | Official Server</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6c5ce7;
-            --secondary: #a29bfe;
-            --dark: #2d3436;
-            --light: #dfe6e9;
+            --primary: #a29bfe;
+            --secondary: #6c5ce7;
+            --accent: #fd79a8;
+            --dark: #0f0f0f;
+            --glass: rgba(255, 255, 255, 0.05);
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            background-color: #0f0f0f;
+            background-color: var(--dark);
             color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* Navigation */
+        /* Navbar with Blur */
         nav {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 1rem 5%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: fixed;
-            width: 90%;
+            width: 100%;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary); }
+        .logo { font-weight: 700; font-size: 1.5rem; letter-spacing: 1px; color: var(--primary); }
 
-        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav ul { list-style: none; display: flex; gap: 30px; }
 
         nav a {
             text-decoration: none;
-            color: white;
-            transition: 0.3s;
+            color: #ccc;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        nav a:hover { color: var(--secondary); }
+        nav a:hover { color: white; transform: translateY(-2px); }
 
         /* Hero Section */
         header {
@@ -54,39 +61,86 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&q=80&w=1920');
+            /* New Aesthetic Minecraft Background */
+            background: linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.8)), 
+                        url('https://wallpaperaccess.com/full/399438.jpg');
             background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        h1 { 
+            font-size: 4rem; 
+            margin-bottom: 10px;
+            animation: float 5s ease-in-out infinite; 
+            text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
         }
 
         .ip-box {
-            background: var(--primary);
-            padding: 15px 30px;
-            border-radius: 5px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            padding: 18px 35px;
+            border-radius: 50px;
             cursor: pointer;
-            font-weight: bold;
-            margin-top: 20px;
+            font-weight: 700;
+            margin-top: 25px;
+            box-shadow: 0 10px 30px rgba(108, 92, 231, 0.3);
+            transition: all 0.3s ease;
+            border: none;
         }
 
-        /* Info Section */
-        .section { padding: 80px 10%; text-align: center; }
+        .ip-box:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 15px 40px rgba(108, 92, 231, 0.5);
+        }
 
-        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        /* Features Section */
+        .section { padding: 100px 10%; text-align: center; }
 
-        .card { background: #1e1e1e; padding: 30px; border-radius: 10px; border-bottom: 4px solid var(--primary); }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+
+        .card { 
+            background: var(--glass);
+            padding: 40px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
 
         /* Vote Links */
-        .vote-list { display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 0 auto; }
+        .vote-list { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: 40px auto; }
 
         .vote-btn {
-            background: #2d3436;
+            background: var(--glass);
             color: white;
-            padding: 15px;
+            padding: 20px;
             text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-weight: 500;
         }
 
-        .vote-btn:hover { background: var(--primary); transform: translateX(10px); }
+        .vote-btn:hover { 
+            background: var(--secondary); 
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        footer { padding: 40px; text-align: center; font-size: 0.9rem; color: #666; }
+
     </style>
 </head>
 <body>
@@ -101,33 +155,33 @@
     </nav>
 
     <header id="home">
-        <h1>Welcome to DreamySurvival</h1>
-        <p>Survival • Clans • Economy</p>
-        <div class="ip-box" onclick="copyIP()">IP: DreamySurvival.apexmc.co</div>
-        <p><small>(Click to copy IP)</small></p>
+        <h1>DreamySurvival</h1>
+        <p style="letter-spacing: 3px; color: var(--primary); font-weight: 700;">SURVIVAL • CLANS • ECONOMY</p>
+        <button class="ip-box" onclick="copyIP()">IP: DreamySurvival.apexmc.co</button>
+        <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.6;">Click to copy and join the adventure</p>
     </header>
 
     <section class="section">
-        <h2>Why Play Here?</h2>
+        <h2 style="font-size: 2.5rem; margin-bottom: 50px;">The Experience</h2>
         <div class="features">
             <div class="card">
-                <h3>⚔️ Clans</h3>
-                <p>Form alliances, declare wars, and dominate the server with your team.</p>
+                <h3 style="color: var(--primary); margin-bottom: 15px;">⚔️ Clans</h3>
+                <p>Team up with friends, claim your territory, and build an unstoppable empire.</p>
             </div>
             <div class="card">
-                <h3>💰 Economy</h3>
-                <p>Player-driven markets and jobs to help you build your empire.</p>
+                <h3 style="color: var(--primary); margin-bottom: 15px;">💰 Economy</h3>
+                <p>Trade with players, open shops, and become the richest explorer on the server.</p>
             </div>
             <div class="card">
-                <h3>🌲 Survival</h3>
-                <p>Enhanced vanilla experience with unique community events.</p>
+                <h3 style="color: var(--primary); margin-bottom: 15px;">🌍 Survival</h3>
+                <p>An enhanced vanilla world with custom terrain and unique community events.</p>
             </div>
         </div>
     </section>
 
-    <section class="section" id="vote" style="background: #161616;">
-        <h2>Support Us: Vote</h2>
-        <p>Earn rewards in-game by voting on these lists:</p>
+    <section class="section" id="vote" style="background: rgba(0,0,0,0.3);">
+        <h2 style="font-size: 2.5rem;">Support the Server</h2>
+        <p style="opacity: 0.7;">Voting helps us grow and earns you rewards!</p>
         <div class="vote-list">
             <a href="https://minecraftservers.org/server/683789" class="vote-btn" target="_blank">MinecraftServers.org</a>
             <a href="https://minecraft-mp.com/server-s354188" class="vote-btn" target="_blank">Minecraft-MP</a>
@@ -137,11 +191,25 @@
         </div>
     </section>
 
+    <footer>
+        &copy; 2024 DreamySurvival. Not affiliated with Mojang AB.
+    </footer>
+
     <script>
         function copyIP() {
             const ip = "DreamySurvival.apexmc.co";
             navigator.clipboard.writeText(ip);
-            alert("IP Copied to clipboard!");
+            
+            // Visual feedback on the button
+            const btn = document.querySelector('.ip-box');
+            const originalText = btn.innerText;
+            btn.innerText = "IP COPIED!";
+            btn.style.background = "#00b894";
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = "";
+            }, 2000);
         }
     </script>
 
